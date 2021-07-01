@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() ~ "Articles" }}{% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>
+            Tkt's blog
+        </h1>
+        <p>
+            <img src={{ asset("images/coding.gif") }}>
+        </p>
+
+        {% if view == 'list' %}
+            {% include 'articles/show.html.twig' %}
+        {% elseif view == 'createOrUpdate' %}
+            {% include 'articles/edit.html.twig' %}
+        {% endif %}
+
+    </div>
+{% endblock %}
