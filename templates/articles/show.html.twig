@@ -1,0 +1,40 @@
+{% if articles is not empty %}
+<h1>All Articles</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Author</th>
+      <th>Content's preview</th>
+      <th>Date</th>
+      {% if deleteRight %}
+        <th>Delete</th>
+      {% endif %}
+
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for article in articles %}
+  <tr>
+  
+    <td><a href="/articles/view/{{article.id}}">{{ article.title }}</a></td>
+    <td>{{ article.subtitle | slice(0, 20) }} </td>
+    <td>{{ article.author }}</td>
+    <td>{{ article.content | slice(0, 20) }} </td>
+    <td>{{ article.date }}...</td>
+    {% if deleteRight %}
+      <td><a href="/articles/delete/{{ article.id }}">Delete</a></td>
+    {% endif %}
+    <td><a href="articles/update/{{ article.id }}">Update</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>No article found.</p>
+{% endif %}
+
+<br/>
+<a href="/articles/create">Create New</a>

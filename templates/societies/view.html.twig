@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+{% if errorMessage is not empty %}
+    <h3>{{errorMessage}}</h3>
+
+{% elseif society is not empty %}
+
+    <h1>{{ society.name }}</h1>
+    <h2>SIREN : {{ society.siren }} </h2>
+    <h3>SECTOR : {{ society.sector }} </h3>
+
+    {% if society.results is not empty %}
+        <table>
+        <thead>
+            <tr>
+            <th>YEAR</th>
+            <th>CA</th>
+            <th>MARGIN</th>
+            <th>EBITDA</th>
+            <th>LOSS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for result in society.results %}
+        <tr>
+            <td>{{ result.year }} </td>
+            <td style="background-color: {{ result.ca.color }};">{{ result.ca.value }} </td>
+            <td style="background-color: {{ result.margin.color }};">{{ result.margin.value }} </td>
+            <td style="background-color: {{ result.ebitda.color }};">{{ result.ebitda.value }} </td>
+            <<td style="background-color: {{ result.loss.color }};">{{ result.loss.value }} </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        <p>No result found.</p>
+    {% endif %}
+{% endif %}
+
+
+
+<br/>
+<a href="/societies">View All</a>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% if societies is not empty %}
+<h1>All Societies</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Siren</th>
+      <th>Sector</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for society in societies %}
+  <tr>
+  
+    <td><a href="/societies/view/{{society.id}}">{{ society.name }}</a></td>
+    <td>{{ society.siren }} </td>
+    <td>{{ society.sector }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>No Society found.</p>
+{% endif %}

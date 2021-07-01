@@ -1,0 +1,17 @@
+{% block content %}
+
+{% if errorMessage is not empty %}
+<h3>{{errorMessage}}</h3>
+
+{% else %}
+
+<h1>{{ article.title }}</h1>
+<h2>{{ article.subtitle }}</h2>
+<p> {{ article.content }} </p>
+
+<br/>
+<a href="/articles">View All</a> -
+<a href="/articles/update/{{ article.id }}">Modify</a>
+
+{% endif %}
+{% endblock %}

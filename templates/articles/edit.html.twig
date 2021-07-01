@@ -1,0 +1,40 @@
+{% block content %}
+
+<a href="/articles">Back to Home</a>
+<h1>Create or Update Article:</h1>
+
+{% if errorMessage is not empty %}
+<h3>{{errorMessage}}</h3>
+{% endif %}
+
+{% if showForm %}
+{{ form_start(form) }}
+
+<table>
+  <tbody>
+    <tr>
+      <th>Title:</th>
+      <td>{{ form_widget(form.title) }}</td>
+    </tr>
+    <tr>
+      <th>Subtitle:</th>
+      <td>{{ form_widget(form.subtitle) }}</td>
+    </tr>
+    <tr>
+      <th>Article Body:</th>
+      <td>{{ form_widget(form.content) }}</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>{{ form_widget(form.save) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{{ form_end(form) }}
+
+{% endif %}
+
+
+
+{% endblock %}
