@@ -22,6 +22,8 @@ In this project, the environment, the database and the authentication are alread
 
 `git clone https://github.com/devTkt/tkt_blog.git --config core.autocrlf=input`
 
+`git checkout master`
+
 2. Switch to the repository folder:
 
 `cd tkt_blog`

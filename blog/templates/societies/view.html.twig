@@ -12,7 +12,13 @@
     <h3>SECTOR : {{ society.sector }} </h3>
 
     {% if society.results is not empty %}
-        <table>
+        <table 
+            border="1" 
+            cellspacing="0" 
+            cellpadding="0"
+            width="500" 
+            align="center"
+        >        
         <thead>
             <tr>
             <th>YEAR</th>
@@ -29,7 +35,7 @@
             <td style="background-color: {{ result.ca.color }};">{{ result.ca.value }} </td>
             <td style="background-color: {{ result.margin.color }};">{{ result.margin.value }} </td>
             <td style="background-color: {{ result.ebitda.color }};">{{ result.ebitda.value }} </td>
-            <<td style="background-color: {{ result.loss.color }};">{{ result.loss.value }} </td>
+            <td style="background-color: {{ result.loss.color }};">{{ result.loss.value }} </td>
         </tr>
         {% endfor %}
         </tbody>

@@ -1,11 +1,21 @@
 {% if societies is not empty %}
 <h1>All Societies</h1>
-<table>
-  <thead>
+<table 
+  border="1" 
+  cellspacing="0" 
+  cellpadding="0"
+  width="500" 
+  align="center"
+>
+  <thead
+    text-align=center"
+    background-color="#333";
+    padding="10px"
+  >
     <tr>
-      <th>Name</th>
-      <th>Siren</th>
-      <th>Sector</th>
+      <th><a href="/societies/show/name/{{order}}">Name</a></th>
+      <th><a href="/societies/show/siren/{{order}}">Siren</a></th>
+      <th><a href="/societies/show/sector/{{order}}">Sector</a></th>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +27,18 @@
     <td>{{ society.sector }}</td>
   </tr>
   {% endfor %}
+
   </tbody>
 </table>
+
+<p> 
+PAGE
+<br> 
+{% for i in 1..nbPages %}
+    - <a href="/societies/show/name/{{orderActual}}/{{ i }}">{{ i }} </a>
+{% endfor %}
+</p>
+
 {% else %}
   <p>No Society found.</p>
 {% endif %}

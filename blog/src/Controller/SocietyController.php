@@ -25,13 +25,7 @@ class SocietyController extends AbstractController
      */
     public function index(): Response
     {
-        // TO DO Change route to manage filter and pagination
-
-        // show all society 
-        return $this->render('societies/societies.html.twig', [
-            'view' => 'list',
-            'societies' => $this->service->getList()
-        ]);
+       return $this->ListAction('name', 'ASC');
     }
 
     /**
@@ -56,6 +50,30 @@ class SocietyController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/societies/show/{type}/{order}/{page}")
+     */
+    public function ListAction($type = null, $order = null, $page = 1)
+    {
+        // TO DO change that to search any thing not only name
+        $search = null;
 
+        $errorMessage = null;
+        $societies = $this->service->getList($search, $type, $order, $page, 15);
+        
+        if (!$societies) {
+            $errorMessage = 'Not found';
+        }
 
+        // show all society
+        return $this->render('societies/societies.html.twig', [
+            'view' => 'list',
+            'order' => ( $order === 'DESC') ? 'ASC' : 'DESC',
+            'orderActual' => $order,
+            'errorMessage' => $errorMessage,
+            'societies' => $societies['data'],
+            'page' => $societies['page'],
+            'nbPages' => $societies['nbPages']
+        ]);
+    }
 }

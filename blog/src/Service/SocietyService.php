@@ -28,22 +28,22 @@ class SocietyService
      * Get all Society and format it
      * @return array
      */
-    public function getList($search = [], $orderField = 'name', $order = 'ASC', $offset = 0, $limit = 20): array
+    public function getList($search = null, $orderField = 'name', $order = 'ASC', $page = 1, $nbMaxParPage = 20): array
     {
-        // TO DO Change findBy to the normal sql 
+        // TO DO Change findBy to the normal sql
         // TO DO use Doctrine\ORM\Tools\Pagination\Paginator to manage pagination
-
-        return array_map(
-            function (Society $society) {
-                return [
-                    'id' => $society->getId(),
-                    'name' => $society->getName(),
-                    'siren' => $society->getSiren(),
-                    'sector' => $society->getSector(),
-                ];
-            },
-            $this->repository->findBy($search, ["$orderField" => "$order"], $limit, 0)
-        );
+        $resultWithPagination = $this->repository->findByWithPagination($search, $orderField, $order, $page, $nbMaxParPage);
+        $listSociety = [];
+        foreach ($resultWithPagination['data'] as $society) {
+            $listSociety[] = [
+                'id' => $society->getId(),
+                'name' => $society->getName(),
+                'siren' => $society->getSiren(),
+                'sector' => $society->getSector(),
+            ];
+        }
+        $resultWithPagination['data'] = $listSociety;
+        return $resultWithPagination;
     }
     /**
      * format the society results
